@@ -8,3 +8,5 @@ core
 *.cub
 *.lst
 *.mod
+test.pbs
+test.pbs.*
