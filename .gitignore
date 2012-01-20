@@ -1,0 +1,10 @@
+*.o
+*.swp
+*.swo
+cuda_profile_*.log
+core
+*.exe
+*.ptx
+*.cub
+*.lst
+*.mod

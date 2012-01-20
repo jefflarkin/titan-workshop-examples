@@ -1,0 +1,8 @@
+#pragma OPENCL EXTENSION cl_khr_fp64: enable
+__kernel void scaleIt (__global double *a,
+                       int scaleBy)
+{
+  int i = get_global_id(0);
+
+  a[i] = (double)scaleBy * a[i];
+}
