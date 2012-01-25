@@ -28,7 +28,7 @@ char* loadSource(const char *fname, size_t* sizeRead)
     return 0;
   }
 
-  close(f);
+  fclose(f);
   *sizeRead = len + 1;
 
   return src;
