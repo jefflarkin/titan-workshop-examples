@@ -22,13 +22,9 @@ endif
 	${CUDAF} -o $@ ${CUDAFFLAGS} $<
 
 cudac.exe: scaleitC.o scaleitC_main.o
-ifeq "$(CRAY_CUDA_VERSION)" ""
-	@echo "Please run the following command: 'module load cuda'"
+ifeq "$(CRAY_CUDATOOLKIT_VERSION)" ""
+	@echo "Please run the following command: 'module load cudatoolkit'"
 	@exit 1
-endif
-ifeq "$(PE_ENV)" "CRAY"
-	@echo "If you receive a link error for -lsci_acc, please ensure xtpe-accel-nvidia20 is loaded and swap to xt-asyncpe/5.05 (even if it is already loaded)."
-	@echo ""
 endif
 	${CC} -o $@ $^ $(LDFLAGS)
 

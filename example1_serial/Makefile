@@ -8,6 +8,12 @@ CUDAFFLAGS=-Mcuda=cc20,ptxinfo,cuda3.2 -ta=nvidia:cc20,time -Minfo=all
 all: cudaf.exe cudac.exe
 
 cudaf.exe: scaleitF.o
+ifneq "$(PE_ENV)" "PGI"
+	@echo "CUDA Fortran only supported by PrgEnv-pgi."
+	@echo "Please either build only the cudac.exe target"
+	@echo "or module swap to PrgEnv-pgi."
+	@exit 1
+endif
 	${CUDAF} -o $@ ${CUDAFFLAGS} $<
 
 cudac.exe: scaleitC.o

@@ -20,14 +20,6 @@ ifneq "$(PE_ENV)" "CRAY"
 	@echo "Please swap to PrgEnv-cray"
 	@exit 1
 endif
-ifneq "$(PE_LEVEL)" "8.0"
-	@echo "Please run the following command: 'module swap cce cce/8.0.1.104'"
-	@exit 1
-endif
-ifneq "$(ASYNCPE_VERSION)" "5.05"
-	@echo "Please run the following command: 'module swap xt-asyncpe xt-asyncpe/5.05'"
-	@exit 1
-endif
 
 .SUFFIXES: .o .c .cu .F90
 .c.o:

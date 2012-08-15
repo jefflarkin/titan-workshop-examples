@@ -22,14 +22,10 @@ ifneq "$(PE_ENV)" "CRAY"
 	@echo ""
 endif
 ifneq "$(CRAY_ACCEL_TARGET)" "nvidia20"
-	@echo "Please run the following command: 'module load xtpe-accel-nvidia20'"
+	@echo "Please run the following command: 'module load craype-accel-nvidia20'"
 	@exit 1
 endif
-ifeq "$(CRAY_CUDA_VERSION)" ""
-	@echo "Please run the following command: 'module load cuda'"
-	@exit 1
-endif
-ifneq "$(ASYNCPE_VERSION)" "5.05"
-	@echo "Please run the following command: 'module swap xt-asyncpe xt-asyncpe/5.05'"
+ifeq "$(CRAY_CUDATOOLKIT_VERSION)" ""
+	@echo "Please run the following command: 'module load cudatoolkit'"
 	@exit 1
 endif

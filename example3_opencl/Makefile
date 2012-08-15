@@ -9,8 +9,8 @@ opencl.exe: openclExample.o openclMain.o
 	${CC} -o $@ $^ -lOpenCL
 
 openclExample.o: openclExample.c
-ifeq "$(CRAY_CUDA_VERSION)" ""
-	@echo "Please run the following command: 'module load cuda'"
+ifeq "$(CRAY_CUDATOOLKIT_VERSION)" ""
+	@echo "Please run the following command: 'module load cudatoolkit'"
 	@exit 1
 endif
 	$(OCLCC) -c -o $*.o $<
