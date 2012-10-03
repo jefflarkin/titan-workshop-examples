@@ -3,16 +3,17 @@ FC=ftn
 CUDAC=nvcc
 CUDACFLAGS=-arch=sm_20 --ptxas-options=-v
 CUDAF=${FC}
-CUDAFFLAGS=-Mcuda=cc20,ptxinfo,cuda3.2 -ta=nvidia:cc20,time -Minfo=all
+CUDAFFLAGS=-Mcuda=cc20,ptxinfo,cuda4.1 -ta=nvidia:cc20,4.1,time -Minfo=all
 ifeq "$(PE_ENV)" "PGI"
-LDFLAGS+=-lcudart
+LDFLAGS+=-ta=nvidia:4.1
+CFLAGS+=-ta=nvidia:4.1
 endif
 
 all: cudaf.exe cudac.exe
 
 cudaf.exe: scaleitF.o
-ifeq "$(CRAY_CUDA_VERSION)" ""
-	@echo "Please run the following command: 'module load cuda'"
+ifeq "$(CRAY_CUDATOOLKIT_VERSION)" ""
+	@echo "Please run the following command: 'module load cudatoolkit'"
 	@exit 1
 endif
 ifneq "$(PE_ENV)" "PGI"
