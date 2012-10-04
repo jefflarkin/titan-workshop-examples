@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Titan-workshop-examples by jefflarkin</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Titan-workshop-examples</h1>
+        <h2>Examples for using multiple programming models on Cray XK6 systems.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/jefflarkin/titan-workshop-examples/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/jefflarkin/titan-workshop-examples/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/jefflarkin/titan-workshop-examples" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>Titan Workshop Examples </h1>
+
+<p>Author: Jeff Larkin <a href="mailto:larkin@cray.com">larkin@cray.com</a> 
+Some examples also from Keita Teranishi</p>
+
+<h2>Introduction </h2>
+
+<p>These examples were put together for a Winter 2012 workshop at ORNL introducing the
+Titan Cray XK6 system. They are designed as only simple examples of how to build
+using various programming models and compilers available on that system using
+the Cray build environment. Because the examples were devised during a time of
+rapid development of the respective packages, these examples, expecially the
+Makefiles, need to be made current from time to time. If you have issues, please
+email me at the address above for support.</p>
+
+<h2>Examples</h2>
+
+<ul>
+<li>Example 1 demonstrates building a simple, single-node test case for CUDA for C
+and CUDA Fortran.</li>
+<li>Example 2 extends example 1 for building with MPI as well. Running the
+resulting executable with more than 1 process per node will give errors.</li>
+<li>
+<p>Example 3 builds a simple OpenCL example. The Makefile must change certain
+flaps for support under different compilers. The following warning is expected
+when building using the PGI compiler</p>
+
+<p>cc -ta=nvidia:4.1 -c -o openclExample.o openclExample.c
+  PGC-W-0267-#warning --   Need to implement some method to align data here (/opt/nvidia/cudatoolkit/5.0.33.103/include/CL/cl_platform.h: 408)
+  PGC/x86-64 Linux 12.8-0: compilation completed with warnings</p>
+</li>
+<li><p>Example 4 demonstrates calling libsci_acc from a C codeand requires the Cray
+Compiler Environment (CCE)</p></li>
+<li><p>Example 5 demonstrates calling libsci_acc from CUDA Fortran <strong>(CURRENTLY BROKEN)</strong></p></li>
+<li><p>Example 6 demonstrates calling CUDA from OpenACC. It currently only supports
+the CCE.</p></li>
+<li><p>Example 7 demonstrates calling libsci_acc from OpenACC. <strong>(WORKING BUT OUTDATED)</strong></p></li>
+<li><p>Example 7 demonstrates calling libsci_acc from PGIACC. <strong>(CURRENTLY BROKEN)</strong></p></li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
