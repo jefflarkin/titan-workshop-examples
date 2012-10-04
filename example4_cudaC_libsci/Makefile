@@ -21,8 +21,9 @@ ifneq "$(PE_ENV)" "CRAY"
 	@echo "Please swap to PrgEnv-cray and swap highest numbered version of cce module"
 	@echo ""
 endif
-ifneq "$(CRAY_ACCEL_TARGET)" "nvidia20"
-	@echo "Please run the following command: 'module load craype-accel-nvidia20'"
+ifeq "$(CRAY_ACCEL_TARGET)" ""
+	@echo "Please run the following command (Kepler): 'module load craype-accel-nvidia35'"
+	@echo "Please run the following command (Fermi): 'module load craype-accel-nvidia20'"
 	@exit 1
 endif
 ifeq "$(CRAY_CUDATOOLKIT_VERSION)" ""

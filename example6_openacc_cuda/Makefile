@@ -2,14 +2,20 @@ CC=cc
 FC=ftn
 CUDAC=nvcc
 CUDACFLAGS=-arch=sm_20 --ptxas-options=-v
+ifeq "$(PE_ENV)" "PGI"
+#PGI OpenACC support does not yet support this demo
+CFLAGS+=-ta=nvidia:4.1 -acc
+FFLAGS+=-ta=nvidia:4.1 -acc
+LDFLAGS+=-ta=nvidia:4.1 -acc
+endif
 
 all: testpe cudac.exe cudaf.exe
 
 cudac.exe: scaleitC.o scaleitC_main.o
-	${CC} -o $@ $^ -lcudart
+	$(CC) -o $@ $^ -lcudart $(LDFLAGS)
 
 cudaf.exe: scaleitC.o scaleitF_main.o
-	$(FC) -o $@ $^ -lcudart
+	$(FC) -o $@ $^ -lcudart $(LDFLAGS)
 
 
 .PHONY: clean testpe
