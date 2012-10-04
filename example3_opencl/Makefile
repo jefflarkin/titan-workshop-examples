@@ -5,15 +5,19 @@ ifeq "$(PE_ENV)" "CRAY"
 CFLAGS += -hgnu 
 OCLCC=nvcc
 endif
+ifeq "$(PE_ENV)" "PGI"
+CFLAGS+=-ta=nvidia:4.1
+OCLFLAGS+=-ta=nvidia:4.1
+endif
 opencl.exe: openclExample.o openclMain.o
-	${CC} -o $@ $^ -lOpenCL
+	$(CC) $(OCLFLAGS) -o $@ $^ -lOpenCL
 
 openclExample.o: openclExample.c
 ifeq "$(CRAY_CUDATOOLKIT_VERSION)" ""
 	@echo "Please run the following command: 'module load cudatoolkit'"
 	@exit 1
 endif
-	$(OCLCC) -c -o $*.o $<
+	$(OCLCC) $(OCLFLAGS) -c -o $*.o $<
 
 .PHONY: clean
 clean: 

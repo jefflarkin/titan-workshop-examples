@@ -3,7 +3,7 @@ FC=ftn
 CUDAC=nvcc
 CUDACFLAGS=-arch=sm_20 --ptxas-options=-v
 CUDAF=${FC}
-CUDAFFLAGS=-Mcuda=cc20,ptxinfo,cuda3.2 -ta=nvidia:cc20,time -Minfo=all
+CUDAFFLAGS=-Mcuda=cc20,ptxinfo,cuda4.1 -ta=nvidia:4.1,cc20,time -Minfo=all
 
 all: cudaf.exe cudac.exe
 
